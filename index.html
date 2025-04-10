@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lima Fight - Academia de Luta</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'League Spartan', sans-serif;
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: black;
+            color: white;
+            padding: 20px 60px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        h1, h2, h3 {
+            font-weight: 700;
+        }
+
+        /* Menu Desktop */
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 40px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: color 0.3s ease;
+            font-weight: 600;
+        }
+
+        nav ul li a:hover {
+            color: red;
+        }
+
+        /* Menu Mobile */
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 24px;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #ddd;
+        }
+
+        .hero-text {
+            max-width: 50%;
+        }
+
+        .hero-text h2 {
+            font-size: 40px;
+            color: #222;
+        }
+
+        .hero-text p {
+            font-size: 22px;
+            color: #444;
+            line-height: 1.5;
+            font-weight: 500;
+        }
+
+        .divb {
+            padding-top: 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 18px;
+            background-color: #c02e06;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            transform: scale(1.1);
+            background-color: #a02905;
+        }
+
+        .hero-image img {
+            width: 500px;
+            border-radius: 10px;
+        }
+
+        .modalidades {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 50px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .modalidade {
+            text-align: center;
+            transition: box-shadow 0.3s ease;
+            margin: 0 auto;
+        }
+
+        .modalidade img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(224, 36, 36, 0.899);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .modalidade h3 {
+            font-size: 24px;
+            color: #222;
+            margin-top: 10px;
+        }
+
+        .modalidade p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .modalidades h2 {
+            grid-column: span 2;
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .modalidades p.subtitulo {
+            grid-column: span 2;
+            font-size: 19px;
+            color: #444;
+            margin-bottom: 40px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .modalidade:hover img {
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .professor-info p {
+            margin: 5px 0;
+            font-size: 18px;
+        }
+
+        .professor-info {
+            margin-top: 15px;
+            color: #444;
+        }
+
+        .professor-info h4 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .vantagens {
+            padding: 50px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .vantagens-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .vantagem {
+            text-align: center;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .vantagem-icon {
+            font-size: 50px;
+            color: #c02e06;
+            margin-bottom: 15px;
+        }
+
+        .vantagem h3 {
+            font-size: 24px;
+            color: #222;
+            margin-top: 10px;
+        }
+
+        .vantagem p {
+            margin: 5px 0;
+            font-size: 18px;
+            color: #555;
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        .vantagens h2 {
+            text-align: center;
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        .vantagens p.subtitulo {
+            font-size: 19px;
+            color: #444;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        /* SEÇÃO DE PREMIAÇÕES */
+        .premiacoes {
+            padding: 60px 20px;
+            background-color: #f8f9fa;
+            text-align: center;
+        }
+
+        .premiacoes h2 {
+            font-size: 32px;
+            color: #333;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .premiacoes p.subtitulo {
+            font-size: 19px;
+            color: #db5d5d;
+            margin-bottom: 40px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            font-weight: 500;
+        }
+
+        .premiacoes-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .premiacao {
+            width: 100%;
+            max-width: 400px;
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .premiacao-imagem {
+            height: 250px;
+            overflow: hidden;
+            border: 3px solid #c02e06;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(224, 36, 36, 0.5);
+            margin: 0 auto 25px;
+            width: calc(100% - 40px);
+            position: relative;
+        }
+
+        .premiacao-imagem img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .premiacao-conteudo {
+            padding: 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .premiacao h3 {
+            font-size: 22px;
+            color: #c02e06;
+            margin-bottom: 10px;
+        }
+
+        .premiacao .posicao {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .medalha {
+            width: 50px;
+            height: 50px;
+            margin: -25px auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 2;
+        }
+
+        .medalha i {
+            font-size: 25px;
+        }
+
+        .terceiro .medalha i {
+            color: #cd7f32;
+        }
+
+        .segundo .medalha i {
+            color: #c0c0c0;
+        }
+
+        .destaque {
+            background-color: #f0f0f0;
+            border-left: 5px solid #c02e06;
+            max-width: 800px;
+        }
+
+        .contato {
+            background-color: #eef1f4;
+            color: rgb(2, 2, 2);
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .contato h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+        }
+
+        .contato .info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .contato .info div {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .contato .info i {
+            font-size: 28px;
+            margin-right: 10px;
+            color: #c02e06;
+            transition: transform 0.3s ease;
+        }
+
+        .contato .info i:hover {
+            transform: scale(1.2);
+        }
+
+        /* ESTILOS PARA PREÇOS E PROMOÇÃO */
+        .preco {
+            font-size: 22px;
+            font-weight: 700;
+            color: #c02e06;
+            margin: 15px 0;
+        }
+
+        .promocao {
+            background-color: #c02e06;
+            color: white;
+            padding: 30px;
+            margin: 40px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            grid-column: span 2;
+        }
+
+        .promocao h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .promocao p {
+            font-size: 20px;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .promocao .valor {
+            font-size: 32px;
+            font-weight: 700;
+            color: #ffd700;
+        }
+
+        @media (max-width: 1024px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-text {
+                max-width: 100%;
+                margin-bottom: 30px;
+            }
+            
+            .hero-image img {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-wrap: wrap;
+            }
+            
+            .menu-toggle {
+                display: block;
+                order: 1;
+            }
+            
+            nav {
+                width: 100%;
+                order: 2;
+                display: none;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 10px;
+                padding-top: 20px;
+            }
+            
+            .vantagens-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .premiacoes-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .premiacao {
+                max-width: 100%;
+            }
+            
+            .modalidades {
+                grid-template-columns: 1fr;
+                padding: 30px 20px;
+            }
+            
+            .modalidades h2,
+            .modalidades p.subtitulo {
+                grid-column: span 1;
+            }
+            
+            .promocao {
+                grid-column: span 1;
+                margin: 30px auto;
+            }
+            
+            .contato .info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Academia Lima Fight</h1>
+        <div class="menu-toggle" id="mobile-menu">
+            <i class="fas fa-bars"></i>
+        </div>
+        <nav id="main-nav">
+            <ul>
+                <li><a href="#inicio">Início</a></li>
+                <li><a href="#modalidades">Modalidades</a></li>
+                <li><a href="#vantagens">Vantagens</a></li>
+                <li><a href="#premiacoes">Premiações</a></li>
+                <li><a href="#contato">Contato</a></li> 
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="inicio" class="hero">
+        <div class="hero-text">
+            <h2>Bem-vindo à Lima Fight!</h2>
+            <p>Na Lima Fight, acreditamos que a verdadeira força vai além dos músculos – ela está na disciplina, 
+            na perseverança e no espírito de superação. Aqui, você treina com os melhores, aprende técnicas afiadas e desenvolve a mentalidade de um verdadeiro lutador.</p>
+            
+            <div class="divb"><a href="#modalidades" class="btn">Saiba mais</a></div>
+        </div>
+        <div class="hero-image">
+            <img src="fotos/logo_limafight.png" alt="Foto da academia de luta">
+        </div>
+    </section>
+    
+    <section id="modalidades" class="modalidades">
+        <h2>Modalidades</h2>
+        <p class="subtitulo">Oferecemos treinos de Muay Thai, Karatê, Boxe e Jiu-Jitsu, para todos os níveis, do iniciante ao avançado. Seja para competir, se defender ou apenas melhorar sua condição física, nosso time está pronto para te guiar nessa jornada.</p>
+        
+        <div class="modalidade">
+            <img src="fotos/Muay thai.png" alt="Muay Thai">
+            <h3>Muay Thai</h3>
+            <div class="preco">R$ 60/mês</div>
+            <div class="professor-info">
+                <h4>Professor: Daniel Lima</h4>
+                <p><strong>Turma:</strong> Segunda e Quarta às 19h</p>
+            </div>
+        </div>
+        
+        <div class="modalidade">
+            <img src="fotos/Karatê.png" alt="Karatê">
+            <h3>Karatê</h3>
+            <div class="preco">R$ 60/mês</div>
+            <div class="professor-info">
+                <h4>Professora: Maria Clara</h4>
+                <p><strong>Turma:</strong> Segunda, Quarta e Sexta às 18h</p>
+            </div>
+        </div>
+        
+        <div class="modalidade">
+            <img src="fotos/Boxe.png" alt="Boxe">
+            <h3>Boxe</h3>
+            <div class="preco">R$ 60/mês</div>
+            <div class="professor-info">
+                <h4>Professor: Daniel Lima</h4>
+                <p><strong>Turma:</strong> Terça e Quinta às 19h</p>
+            </div>
+        </div>
+        
+        <div class="modalidade">
+            <img src="fotos/Jiu-Jitsu.png" alt="Jiu-Jitsu">
+            <h3>Jiu-Jitsu</h3>
+            <div class="preco">R$ 60/mês</div>
+            <div class="professor-info">
+                <h4>Professor: Daniel Lima</h4>
+                <p><strong>Turma Kids:</strong> Terça e Quinta às 18h</p>
+                <p><strong>Turma Adulto:</strong> Segunda, Quarta e Sexta às 20h</p>
+            </div>
+        </div>
+
+        <div class="promocao">
+            <h3>PROMOÇÃO ESPECIAL!</h3>
+            <p>Matricule-se em duas modalidades e pague apenas:</p>
+            <div class="valor">R$ 100/mês</div>
+            <p>Economize R$ 20 por mês e tenha acesso ilimitado a duas artes marciais!</p>
+        </div>
+    </section>
+
+    <section id="vantagens" class="vantagens">
+        <h2>Vantagens de Fazer Parte da Lima Fight</h2>
+        <p class="subtitulo">Descubra por que somos referência em artes marciais na região</p>
+        <div class="vantagens-container">
+            <div class="vantagem">
+                <div class="vantagem-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Treinadores Especializados</h3>
+                <p>Aprenda com os melhores treinadores, altamente qualificados e experientes no mundo das lutas.</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">
+                    <i class="fas fa-fire-alt"></i>
+                </div>
+                <h3>Ambiente Motivador</h3>
+                <p>Treine em um espaço que incentiva disciplina, respeito e superação, com uma equipe sempre disposta a ajudar.</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">
+                    <i class="fas fa-dumbbell"></i>
+                </div>
+                <h3>Infraestrutura Completa</h3>
+                <p>Equipamentos modernos e um ambiente preparado para garantir o melhor desempenho em seus treinos.</p>
+            </div>
+            <div class="vantagem">
+                <div class="vantagem-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3>Comunidade de Apoio</h3>
+                <p>Faça parte de um grupo unido, onde todos se ajudam a crescer e evoluir dentro e fora do tatame.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="premiacoes" class="premiacoes">
+        <h2>Premiações</h2>
+        <p class="subtitulo">Resultados que orgulham nossa equipe</p>
+        
+        <div class="premiacoes-container">
+            <div class="premiacao terceiro">
+                <div class="premiacao-imagem">
+                    <img src="fotos/3 lugar.png" alt="Copa Vietrous de Jiu-Jitsu">
+                </div>
+                <div class="medalha">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <div class="premiacao-conteudo">
+                    <h3>Copa Vietrous de Jiu-Jitsu</h3>
+                    <div class="posicao">3º Lugar</div>
+                </div>
+            </div>
+            
+            <div class="premiacao segundo">
+                <div class="premiacao-imagem">
+                    <img src="fotos/2 lugar.png" alt="Copa Barbalha de Jiu-Jitsu">
+                </div>
+                <div class="medalha">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <div class="premiacao-conteudo">
+                    <h3>Copa Barbalha de Jiu-Jitsu</h3>
+                    <div class="posicao">2º Lugar por Equipe</div>
+                </div>
+            </div>
+            
+            <div class="premiacao destaque" style="text-align: center;">
+                <div class="premiacao-conteudo">
+                    <h3>Próximos Desafios</h3>
+                    <p style="margin-top: 15px; text-align: center;">
+                        Estamos em treinamento constante para novas competições. Acompanhe nossas redes sociais para ver nossas próximas conquistas!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contato">
+        <h2>Contato</h2>
+        <div class="info">
+            <div>
+                <i class="fab fa-instagram"></i>
+                <span><a href="https://www.instagram.com/lima_fight" target="_blank" style="color: rgb(17, 17, 17); text-decoration: none;">@lima_fight</a></span>
+            </div>
+            <div>
+                <i class="fas fa-phone-alt"></i>
+                <span>(88) 99998-1675</span>
+            </div>
+            <div>
+                <i class="fas fa-map-marker-alt"></i>
+                <span>Rua Vereador Antonio Viana de Araujo, 480 - Cedro-CE</span>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Menu Hamburguer
+        document.getElementById('mobile-menu').addEventListener('click', function() {
+            const nav = document.getElementById('main-nav');
+            nav.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>
